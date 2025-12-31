@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year Skandoura! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffc3d8 50%, #ff8fab 100%);
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="15" font-size="15">❤️</text></svg>'), auto;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 3px 3px 0 #ff1493, -3px -3px 0 #ff69b4;
+            animation: bounce 2s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ff0066;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px rgba(255, 0, 102, 0.6),
+                3px 3px 0 #fff;
+            animation: rainbow 3s ease-in-out infinite;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .year {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 0 #ff1493;
+            animation: spin 4s linear infinite;
+            display: inline-block;
+        }
+
+        .heart {
+            font-size: 4rem;
+            display: inline-block;
+            animation: heartPulse 1s ease-in-out infinite;
+            margin: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .heart:hover {
+            transform: scale(1.5) rotate(20deg);
+        }
+
+        .message {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-top: 20px;
+            animation: slideIn 2s ease-out 1s both;
+            text-shadow: 2px 2px 0 #ff69b4;
+        }
+
+        .interactive-zone {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+
+        .button {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            border: 3px solid white;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s;
+            font-weight: bold;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .button:hover {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: floatUp 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: fall 3s linear infinite;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleAnim 1.5s ease-in-out infinite;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0066; }
+            25% { color: #ff1493; }
+            50% { color: #ff69b4; }
+            75% { color: #ff1493; }
+            100% { color: #ff0066; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.3); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .name { font-size: 3rem; }
+            .year { font-size: 2.5rem; }
+            .message { font-size: 1.2rem; padding: 0 20px; }
+            .button { font-size: 1.2rem; padding: 12px 30px; }
+        }
+
+        #cuteCharacter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 4rem;
+            cursor: pointer;
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        #cuteCharacter:hover {
+            transform: scale(1.3) rotate(20deg);
+        }
+
+        #floatingText {
+            position: fixed;
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 #ff1493;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .kissEmoji {
+            position: fixed;
+            font-size: 3rem;
+            animation: flyKiss 2s ease-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes flyKiss {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        .shakeable {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <h1>🎊 Happy New Year 🎊</h1>
+        <div class="name" id="name">SKANDOURA!</div>
+        <div class="heart" id="mainHeart">💕</div>
+        <div class="year">2026</div>
+        <div class="message">Let's make this year amazing together! ✨</div>
+    </div>
+
+    <div class="interactive-zone">
+        <button class="button" id="funButton">Click for Love! 💖</button>
+    </div>
+
+    <div id="cuteCharacter">🐻</div>
+    <div id="floatingText"></div>
+
+    <script>
+        const emojis = ['❤️', '💕', '💖', '💗', '💘', '💝', '💞', '🎉', '🎊', '✨', '⭐', '🌟', '💫', '🎀', '🌸', '🌺', '🦄', '🍰'];
+        const colors = ['#ff1493', '#ff69b4', '#fff', '#ff0066', '#ffc0cb'];
+        
+        let clickCount = 0;
+
+        // Click the button for explosion
+        document.getElementById('funButton').addEventListener('click', function() {
+            clickCount++;
+            
+            // Create emoji explosion
+            for (let i = 0; i < 30; i++) {
+                createFloatingEmoji();
+            }
+            
+            // Create confetti
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+            
+            // Special messages based on clicks
+            const messages = [
+                "Skandoura is the BEST! 💕",
+                "You're amazing! ✨",
+                "Love you so much! 💖",
+                "You make me smile! 😊",
+                "Can't wait for 2026 with you! 🎉",
+                "You're my favorite! 💝",
+                "Best year ever incoming! 🚀",
+                "SMOOCH! 😘"
+            ];
+            
+            if (clickCount % 3 === 0) {
+                showMessage(messages[Math.floor(Math.random() * messages.length)]);
+            }
+            
+            // Make the button text change
+            this.textContent = ['💖 YAY!', '✨ Again!', '🎉 More!', '💕 Woohoo!'][Math.floor(Math.random() * 4)];
+            setTimeout(() => {
+                this.textContent = 'Click for Love! 💖';
+            }, 1000);
+        });
+
+        // Click the main heart
+        document.getElementById('mainHeart').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'heartPulse 1s ease-in-out infinite';
+            }, 10);
+            
+            for (let i = 0; i < 10; i++) {
+                createFloatingEmoji();
+            }
+        });
+
+        // Click the name
+        document.getElementById('name').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'rainbow 3s ease-in-out infinite';
+            }, 10);
+            createSparkles(this);
+        });
+
+        // Random click anywhere
+        document.body.addEventListener('click', function(e) {
+            if (!e.target.classList.contains('button') && 
+                e.target.id !== 'mainHeart' && 
+                e.target.id !== 'name') {
+                createFloatingEmoji(e.clientX, e.clientY);
+            }
+        });
+
+        function createFloatingEmoji(x, y) {
+            const emoji = document.createElement('div');
+            emoji.className = 'floating-emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = (x || Math.random() * window.innerWidth) + 'px';
+            emoji.style.top = (y || window.innerHeight) + 'px';
+            emoji.style.animationDelay = Math.random() * 0.5 + 's';
+            emoji.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => emoji.remove(), 5000);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.top = '-10px';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 0.5 + 's';
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 4000);
+        }
+
+        function createSparkles(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }
+
+        function showMessage(text) {
+            const msg = document.createElement('div');
+            msg.style.position = 'fixed';
+            msg.style.top = '50%';
+            msg.style.left = '50%';
+            msg.style.transform = 'translate(-50%, -50%)';
+            msg.style.fontSize = '3rem';
+            msg.style.color = '#fff';
+            msg.style.textShadow = '3px 3px 0 #ff1493';
+            msg.style.zIndex = '1000';
+            msg.style.animation = 'bounce 1s ease-in-out';
+            msg.textContent = text;
+            document.body.appendChild(msg);
+            
+            setTimeout(() => msg.remove(), 2000);
+        }
+
+        // Auto-generate some floating elements
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createFloatingEmoji();
+            }
+        }, 1000);
+
+        // Initial burst
+        setTimeout(() => {
+            for (let i = 0; i < 20; i++) {
+                createConfetti();
+            }
+        }, 500);
+
+        // Cute character interactions
+        const cuteCharacter = document.getElementById('cuteCharacter');
+        const characters = ['🐻', '🐰', '🐱', '🦊', '🐼', '🐶', '🦄', '🐨'];
+        let characterIndex = 0;
+
+        cuteCharacter.addEventListener('click', function(e) {
+            // Change character
+            characterIndex = (characterIndex + 1) % characters.length;
+            this.textContent = characters[characterIndex];
+            
+            // Send kiss
+            sendKiss(e.clientX, e.clientY);
+            
+            // Show cute message
+            const cuteMessages = ['Chu! 💋', 'Love ya! 💕', 'Mwah! 😘', 'Smooch! 💖', 'Kisses! 💝'];
+            showFloatingText(cuteMessages[Math.floor(Math.random() * cuteMessages.length)], e.clientX, e.clientY);
+            
+            // Create hearts around character
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => createFloatingEmoji(e.clientX, e.clientY), i * 100);
+            }
+        });
+
+        // Double click anywhere for surprise
+        let lastClickTime = 0;
+        document.body.addEventListener('click', function(e) {
+            const now = Date.now();
+            if (now - lastClickTime < 300) {
+                // Double click detected!
+                createHeartBurst(e.clientX, e.clientY);
+                showFloatingText('💕 Double Love! 💕', e.clientX, e.clientY);
+            }
+            lastClickTime = now;
+        });
+
+        // Shake animation on hover over Skandoura's name
+        document.getElementById('name').addEventListener('mouseenter', function() {
+            this.classList.add('shakeable');
+            setTimeout(() => this.classList.remove('shakeable'), 500);
+        });
+
+        // Hover over year to spin it faster
+        document.querySelector('.year').addEventListener('mouseenter', function() {
+            this.style.animationDuration = '1s';
+        });
+        document.querySelector('.year').addEventListener('mouseleave', function() {
+            this.style.animationDuration = '4s';
+        });
+
+        // Arrow keys for fun
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowUp') {
+                for (let i = 0; i < 15; i++) {
+                    createFloatingEmoji(window.innerWidth / 2, window.innerHeight);
+                }
+            } else if (e.key === 'ArrowDown') {
+                for (let i = 0; i < 15; i++) {
+                    createConfetti();
+                }
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                document.getElementById('mainContainer').classList.add('shakeable');
+                setTimeout(() => {
+                    document.getElementById('mainContainer').classList.remove('shakeable');
+                }, 500);
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                document.getElementById('funButton').click();
+            }
+        });
+
+        // Type "LOVE" for surprise
+        let typedKeys = '';
+        document.addEventListener('keypress', function(e) {
+            typedKeys += e.key.toLowerCase();
+            if (typedKeys.includes('love')) {
+                showMessage('I LOVE YOU SKANDOURA! 💕💕💕');
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => createFloatingEmoji(), i * 50);
+                }
+                typedKeys = '';
+            }
+            if (typedKeys.length > 10) typedKeys = '';
+        });
+
+        function sendKiss(fromX, fromY) {
+            const kiss = document.createElement('div');
+            kiss.className = 'kissEmoji';
+            kiss.textContent = '💋';
+            kiss.style.left = fromX + 'px';
+            kiss.style.top = fromY + 'px';
+            
+            const targetX = window.innerWidth / 2 - fromX;
+            const targetY = window.innerHeight / 2 - fromY;
+            kiss.style.setProperty('--dx', targetX + 'px');
+            kiss.style.setProperty('--dy', targetY + 'px');
+            
+            document.body.appendChild(kiss);
+            setTimeout(() => kiss.remove(), 2000);
+        }
+
+        function showFloatingText(text, x, y) {
+            const floatingText = document.getElementById('floatingText');
+            floatingText.textContent = text;
+            floatingText.style.left = x + 'px';
+            floatingText.style.top = (y - 50) + 'px';
+            floatingText.style.opacity = '1';
+            
+            setTimeout(() => {
+                floatingText.style.opacity = '0';
+            }, 1500);
+        }
+
+        function createHeartBurst(x, y) {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createFloatingEmoji(x, y), i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
